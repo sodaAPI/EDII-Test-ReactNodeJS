@@ -12,6 +12,7 @@ export default function UserForm() {
   const religionOptions = ["Islam", "Kristen", "Hindu", "Budha", "Lainnya"];
   const bloodTypeOptions = ["A", "B", "AB", "O"];
   const statusOptions = ["Lajang", "Menikah", "Bercerai"];
+  const willingOptions = ["Ya", "Tidak"];
 
   // Main user state
   const [user, setUser] = useState({
@@ -647,18 +648,25 @@ export default function UserForm() {
                 onChange={(ev) => setUser({ ...user, skill: ev.target.value })}
                 placeholder="Insert Here..."
               />
+
+              {/* Dropdown for Willing to be placed */}
               <label>
                 Bersedia Ditempatkan Diseluruh Kantor Perusahaan (Ya/Tidak)
               </label>
-              <input
-                type="text"
+              <select
                 className="h-[50px] bg-[#F5F6F9] rounded-[16px] px-3 text-black"
                 value={user.willing_to_placed}
                 onChange={(ev) =>
                   setUser({ ...user, willing_to_placed: ev.target.value })
-                }
-                placeholder="Ya/Tidak"
-              />
+                }>
+                <option value="">Select</option>
+                {willingOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+
               <label>Penghasilan Yang Diharapkan</label>
               <input
                 className="h-[50px] bg-[#F5F6F9] rounded-[16px] px-3 text-black"
